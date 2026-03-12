@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desert Bloom</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-inner">
+      <h1 class="app-title">🌵 Desert Bloom</h1>
+      <div class="streak-badge">
+        <span id="streak-count">0</span>
+        <span class="streak-label">day streak</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="home">Home</button>
+    <button class="tab-btn" data-tab="tasks">Tasks</button>
+    <button class="tab-btn" data-tab="history">History</button>
+    <button class="tab-btn" data-tab="desert">Desert</button>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="app-main">
+
+    <!-- HOME TAB -->
+    <section id="tab-home" class="tab-panel active">
+      <div class="home-greeting">
+        <p id="greeting-text">Good morning.</p>
+        <p class="home-subtext">Your cactus is waiting.</p>
+      </div>
+
+      <div class="home-cactus-preview">
+        <canvas id="mini-cactus" width="120" height="140"></canvas>
+        <p class="cactus-status-text" id="home-cactus-label">Keep going!</p>
+      </div>
+
+      <div class="home-task-summary">
+        <div class="summary-card">
+          <span class="summary-num" id="summary-pending">0</span>
+          <span class="summary-label">Pending</span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-num" id="summary-done">0</span>
+          <span class="summary-label">Done Today</span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-num" id="summary-snoozed">0</span>
+          <span class="summary-label">Snoozed</span>
+        </div>
+      </div>
+
+      <div class="quick-tasks">
+        <h2 class="section-title">Today's Tasks</h2>
+        <ul id="home-task-list" class="task-list"></ul>
+        <button class="btn-primary" onclick="switchTab('tasks')">View All Tasks →</button>
+      </div>
+    </section>
+
+    <!-- TASKS TAB -->
+    <section id="tab-tasks" class="tab-panel">
+      <div class="add-task-form">
+        <h2 class="section-title">Add a Task</h2>
+        <input type="text" id="task-name-input" placeholder="Task name…" maxlength="80" />
+        <input type="time" id="task-time-input" />
+        <select id="task-repeat-input">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="once">Once</option>
+        </select>
+        <button class="btn-primary" id="add-task-btn">+ Add Task</button>
+      </div>
+
+      <h2 class="section-title">All Tasks</h2>
+      <ul id="all-task-list" class="task-list"></ul>
+    </section>
+
+    <!-- HISTORY TAB -->
+    <section id="tab-history" class="tab-panel">
+      <h2 class="section-title">Completion History</h2>
+      <p class="history-note">Tasks you've marked done, most recent first.</p>
+      <ul id="history-list" class="history-list"></ul>
+    </section>
+
+    <!-- DESERT TAB -->
+    <section id="tab-desert" class="tab-panel">
+      <h2 class="section-title">Your Desert</h2>
+      <p class="desert-desc">Your cactus grows as you complete tasks. More blooms = more streaks.</p>
+      <div class="desert-scene">
+        <canvas id="main-cactus" width="300" height="340"></canvas>
+      </div>
+      <div class="desert-stats">
+        <div class="stat-row">
+          <span class="stat-label">Growth level</span>
+          <span class="stat-val" id="growth-level">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Total completed</span>
+          <span class="stat-val" id="total-completed">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Current streak</span>
+          <span class="stat-val" id="desert-streak">0 days</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="growth-bar"></div>
+          </div>
+          <p class="progress-label" id="progress-label">0 / 10 to next level</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
